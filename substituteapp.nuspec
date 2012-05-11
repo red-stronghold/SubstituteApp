@@ -3,9 +3,9 @@
   <metadata>
     <id>SubstituteApp</id>    
     <title>SubstituteApp</title>
-    <version>2.1.0</version>
+    <version>2.1.2</version>
     <authors>Johan Redborg</authors>
-    <iconUrl>http://cloudnine.nuget.test.cloudnine.se/Icons/CloudNine-Logo-32x32.png</iconUrl>
+    <projectUrl>https://github.com/red-stronghold/SubstituteApp</projectUrl>
     <description>Sets up SubstituteApp with template file and substitution file for substitution in web.config</description>
   </metadata>
   <files>

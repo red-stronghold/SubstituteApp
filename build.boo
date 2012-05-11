@@ -1,56 +1,48 @@
+import System.IO
+
 solution_file = "SubstituteApp.sln"
-configuration = "release"
+project_dir   = "SubstituteApp"
+build_folder  = "build/"
+nuget_folder  = "nuget/"
+build_config  = env('build.config')
+build_output  = env('build.output')
 
-deploy_location = "//cn-testweb/Websites/cloudnine.nuget.test.cloudnine.se/Packages"
-deploy_location_command = deploy_location.Replace("/", "\\")
+target default, (compile):
+   pass
+   
+target artifact, (compile, copy_files):
+   pass
+   
+target nuget, (compile, copy_files, nuget_push):
+   pass
 
-target default, (compile, copy_files, nuget_deploy):
-  pass
-
-desc "Compiles the solution"
 target compile:
-  msbuild(file: solution_file, configuration: configuration, version: "4")
-	
+   msbuild(file: solution_file, configuration: build_config, version: "4")
+
+target nuget_pack:
+    rmdir(nuget_folder)
+    mkdir(nuget_folder)
+
+    exec("Libraries/Phantom/lib/nuget/NuGet.exe", "pack substituteapp.nuspec /o ${nuget_folder}")
+
+target nuget_push, (nuget_pack):
+    exec("Libraries/Phantom/lib/nuget/NuGet.exe", "push ${nuget_folder}SubstituteApp.2.1.2.nupkg")
+
+
+target prepare_folders:
+   exec("attrib", "-R ${project_dir}/** /S /D")
+   rmdir(build_folder)
+   mkdir(build_folder)
 
 desc "Copy files"
-target copy_files:
+target copy_files, (prepare_folders):
   print "Copying files to package"
 
-  rmdir("build/")
-  mkdir("build/")
-
-  with FileList("SubstituteApp"):
-    .Include("bin/**/SubstituteApp.exe")
+  with FileList(project_dir):
+    .Include("bin/${build_config}/SubstituteApp.exe")
     .Include("SubstituteApp.config.xml")
     .Include("web.config.config")
     .Include("web.config.substitute.xml")
     .Include("*.ps1")
     .ForEach def(file):
-      file.CopyToDirectory("build/")
-
-  print "Removing read-only"
-  exec("attrib", "-R build/*.* /S /D")
-
-
-target nupack:
-    rmdir("nuget/")
-    mkdir("nuget/")
-
-	#nuget_pack(nuspecfile: "SubstituteApp.nuspec", outputDirectory: "nuget/")
-    exec("Libraries/Phantom/lib/nuget/NuGet.exe", "pack substituteapp.nuspec /o nuget/")
-
-
-target nuget_deploy, (nupack):
-    print "Removing read-only"
-    exec("attrib", "-R ${deploy_location_command}/*.* /S /D")
-
-    print "Deploying files"
-
-    with FileList("nuget"):
-        .Include("*.nupkg")
-        .ForEach def(file):
-            file.CopyToDirectory(deploy_location)
-  
-
-    print "Removing read-only again"
-    exec("attrib", "-R ${deploy_location_command}/*.* /S /D")
+      file.CopyToDirectory(build_folder)
