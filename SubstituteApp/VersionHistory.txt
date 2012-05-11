@@ -1,0 +1,38 @@
+﻿Version History
+-------------------------------------------------------------------------------------
+
+Version		Change made by		Date			Description
+-------------------------------------------------------------------------------------
+1.0			johan.redborg		?				SubstituteApp created
+-------------------------------------------------------------------------------------
+1.1			johan.redborg		?				No description for this version
+-------------------------------------------------------------------------------------
+1.2			johan.redborg		?				Support for substituting XML,
+												instead of only values.
+												Inner XML of the "item"-node
+												will be inserted at your mark.
+-------------------------------------------------------------------------------------
+1.3			johan.redborg		?				No description for this version
+-------------------------------------------------------------------------------------
+1.4			johan.redborg		?				Changed so that template files 
+												should have the same extension 
+												as the file to generate.
+												Instead of alwaws use the 
+												".config"-extension.
+												I.e. "robots.txt.txt" instead
+												of "robots.txt.config".
+-------------------------------------------------------------------------------------
+1.4.1		niklas.melinder		?				Added buildscript that builds
+												solution and pushes nuget package
+												to CN-FILE1
+-------------------------------------------------------------------------------------
+2.0			johan.redborg		?				Rebuild the solution to fetch 
+												template and substitution files
+												from separate config file
+-------------------------------------------------------------------------------------
+2.0.1		johan.redborg		?				Added web.config templates
+-------------------------------------------------------------------------------------
+2.1.0		johan.redborg		2012-03-28		Added dependency of substitute
+												file to the template file in
+												project file structure.
+-------------------------------------------------------------------------------------

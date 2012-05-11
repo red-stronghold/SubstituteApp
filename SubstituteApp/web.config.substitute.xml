@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<substitution>
+  <!-- Requirements: Same amount of item-nodes in every configuration section -->
+  <configuration name="Debug">
+    <item key="#Key1#">Value1</item>
+    <item key="#Key2#">Value2</item>
+  </configuration>
+  <configuration name="Release">
+    <item key="#Key1#">Value3</item>
+    <item key="#Key2#">Value4</item>
+  </configuration>
+</substitution>

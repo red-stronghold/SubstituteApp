@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubstituteApp", "SubstituteApp\SubstituteApp.csproj", "{50FBDCB5-D4A1-49DD-AE08-76843510DD2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{689BAFAE-D772-4C51-9F9B-F0FD039C4D93}"
+	ProjectSection(SolutionItems) = preProject
+		substituteapp.nuspec = substituteapp.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build script", "Build script", "{99BE3D28-6CBB-4E4F-8169-F54884F95020}"
+	ProjectSection(SolutionItems) = preProject
+		build.boo = build.boo
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://cn-tfs:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SubstituteApp\\SubstituteApp.csproj
+		SccProjectName1 = SubstituteApp
+		SccLocalPath1 = SubstituteApp
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50FBDCB5-D4A1-49DD-AE08-76843510DD2D}.Debug|x86.ActiveCfg = Debug|x86
+		{50FBDCB5-D4A1-49DD-AE08-76843510DD2D}.Debug|x86.Build.0 = Debug|x86
+		{50FBDCB5-D4A1-49DD-AE08-76843510DD2D}.Release|x86.ActiveCfg = Release|x86
+		{50FBDCB5-D4A1-49DD-AE08-76843510DD2D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<substitutes>
+  <substitute name="web.config">
+    <templatefile>web.config.config</templatefile>
+    <substitutefile>web.config.substitute.xml</substitutefile>
+    <resultfile>web.config</resultfile>
+  </substitute>
+</substitutes>

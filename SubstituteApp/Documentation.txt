@@ -1,0 +1,79 @@
+﻿------------------------------------------------------------
+Usage
+------------------------------------------------------------
+1.		Create a file with the same name as the file you want to make substitutions in.
+		But add an additional extension, same file extension as the file you want to generate. 
+		I.e. "web.config.config", "robots.txt.txt" or "crossdomain.xml.xml"
+
+2.	a	Create a file with your substitutions. Name it whatever you want, but
+		it will contain XML-data so a XML-file would be just fine. I.e. "substitute_web.config.xml"
+	b	Format the XML-file as the "example.xml" in this project. (or see XML-Format section below)
+
+3.		Add the "SubstituteApp.exe" to you project. The "Libraries"-folder could be a suitable place.
+
+4.		Add a line to your pre-build event, in your project.
+		I.e. '$(SolutionDir)Libraries\SubstituteApp\SubstituteApp.exe $(ConfigurationName) web.config substitute_web.config.xml $(ProjectDir)'
+		The example shows when the "SubstituteApp.exe" is located in folder "\Libraries\SubstituteApp\"
+
+5.		Add additional lines in your pre-build event (see 4.) to substitute in more then one file.
+
+6.		Exclude the result file from Source Control (NOT exclude from project).
+		In VS2010:	- Mark the file by clicking on it
+					- Go to: File->Source Control->Exclude 'YourFile' from Source Control
+					- NOTE: Your can't exclude a file from source control if it has a dependency to a not excluded file.
+					  Remove dependency (edit .csproj file) or exclude the parent file too.
+
+------------------------------------------------------------
+Parameters
+------------------------------------------------------------
+1.		Build flavor name (use "$(ConfigurationName)")
+2.		File name of the result file (the app will assume the template is called exactly the same but with an additional prefix i.e. ".config" or ".txt")
+3.		Substitution file name
+4.		Path to your project (use "$(ProjectDir)")
+(5-).	If path (4.) contains whitespaces the app will believe additional parameters are sent in. These will be concaternated in the app with a whitespace between.
+
+------------------------------------------------------------
+What happens
+------------------------------------------------------------
+The app search the template file for keys and substitutes them with the value defined 
+in the substitution-xml-file.
+The app also remove the readonly attribute of the target file. In order to be able to write to it.
+
+------------------------------------------------------------
+XML-Format
+------------------------------------------------------------
+- Root node: 'substitution'
+- One 'configuration' node for each build flavor you want to use. Attribute 'name'.
+- X number of 'item' nodes under each 'configuration' node.
+	- Attribute: 'key', the key to find and substitute.
+	- InnerXml: the value of found key after substitution
+- Each 'configuration' node needs the same amount of 'item' nodes. Else the substitution will fail.
+- From version 1.2.0.0 it is possible to have subtrees instead of values in the substitute-xml.
+  The subtree may however lose the xml-formatting.
+
+- Example:
+<?xml version="1.0" encoding="utf-8" ?>
+<substitution>
+  <configuration name="Debug">
+    <item key="Key1">Value1</item>
+    <item key="Key2">Value2</item>
+  </configuration>
+  <configuration name="Release">
+    <item key="Key1">Value3</item>
+    <item key="Key2">Value4</item>
+  </configuration>
+</substitution>
+
+------------------------------------------------------------
+Errors
+------------------------------------------------------------
+The app will fail if...
+
+1.	...it isn't invoked with 4 (or more) parameters.
+	An error will be found in the build log.
+
+2.	...the substitution file doesn't have a configuration node for the given configuration.
+	An error will be found in the build log and the the same error will be written to the result file.
+
+3.	...the substitution file doesn't have the same amount of item nodes whitin each configuration node.
+	An error will be found in the build log and the the same error will be written to the result file.
