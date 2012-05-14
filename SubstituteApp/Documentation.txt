@@ -11,26 +11,25 @@ Usage
 
 3.		Add the "SubstituteApp.exe" to you project. The "Libraries"-folder could be a suitable place.
 
-4.		Add a line to your pre-build event, in your project.
-		I.e. '$(SolutionDir)Libraries\SubstituteApp\SubstituteApp.exe $(ConfigurationName) web.config substitute_web.config.xml $(ProjectDir)'
+4.		Add a "SubstituteApp.config.xml" to your project and populate it with 
+
+5.		Add a line to your pre-build event, in your project.
+		I.e. '$(SolutionDir)Libraries\SubstituteApp\SubstituteApp.exe $(ConfigurationName) SubstituteApp.config.xml $(ProjectDir)'
 		The example shows when the "SubstituteApp.exe" is located in folder "\Libraries\SubstituteApp\"
 
-5.		Add additional lines in your pre-build event (see 4.) to substitute in more then one file.
-
 6.		Exclude the result file from Source Control (NOT exclude from project).
-		In VS2010:	- Mark the file by clicking on it
-					- Go to: File->Source Control->Exclude 'YourFile' from Source Control
-					- NOTE: Your can't exclude a file from source control if it has a dependency to a not excluded file.
-					  Remove dependency (edit .csproj file) or exclude the parent file too.
+		In VS2010 using TFS:	- Mark the file by clicking on it
+								- Go to: File->Source Control->Exclude 'YourFile' from Source Control
+								- NOTE: Your can't exclude a file from source control if it has a dependency to a not excluded file.
+								  Remove dependency (edit .csproj file) or exclude the parent file too.
 
 ------------------------------------------------------------
 Parameters
 ------------------------------------------------------------
 1.		Build flavor name (use "$(ConfigurationName)")
-2.		File name of the result file (the app will assume the template is called exactly the same but with an additional prefix i.e. ".config" or ".txt")
-3.		Substitution file name
-4.		Path to your project (use "$(ProjectDir)")
-(5-).	If path (4.) contains whitespaces the app will believe additional parameters are sent in. These will be concaternated in the app with a whitespace between.
+2.		Path to SubstituteApp.config.xml
+3.		Path to your project (use "$(ProjectDir)")
+(4-).	If path (3.) contains whitespaces the app will believe additional parameters are sent in. These will be concaternated in the app with a whitespace between.
 
 ------------------------------------------------------------
 What happens
@@ -40,7 +39,17 @@ in the substitution-xml-file.
 The app also remove the readonly attribute of the target file. In order to be able to write to it.
 
 ------------------------------------------------------------
-XML-Format
+XML-Format - Config
+------------------------------------------------------------
+- Root node: 'substitutes'
+- Child nodes: 'substitute' containing three nodes. Optional attribute 'name' is added for nuget transformation support.
+	- 'templatefile'
+	- 'substitutefile'
+	- 'resultfile'
+	each containing the relative path (from projectroot) to given file.
+
+------------------------------------------------------------
+XML-Format - Substitution
 ------------------------------------------------------------
 - Root node: 'substitution'
 - One 'configuration' node for each build flavor you want to use. Attribute 'name'.
@@ -69,7 +78,7 @@ Errors
 ------------------------------------------------------------
 The app will fail if...
 
-1.	...it isn't invoked with 4 (or more) parameters.
+1.	...it isn't invoked with 3 (or more) parameters.
 	An error will be found in the build log.
 
 2.	...the substitution file doesn't have a configuration node for the given configuration.

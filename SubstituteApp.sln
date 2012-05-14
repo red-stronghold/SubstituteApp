@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{689BAFAE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build script", "Build script", "{99BE3D28-6CBB-4E4F-8169-F54884F95020}"
 	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
 		build.boo = build.boo
 	EndProjectSection
 EndProject
