@@ -10,13 +10,13 @@ Enables you to put environment specific values under source control.
 ------------------------------------------------------------
 Usage
 ------------------------------------------------------------
-1.  	Create a file with the same name as the file you want to make substitutions in.
+1.  		Create a file with the same name as the file you want to make substitutions in.
 		But add an additional extension, same file extension as the file you want to generate. 
 		I.e. "web.config.config", "robots.txt.txt" or "crossdomain.xml.xml"
 
-2.	a	Create a file with your substitutions. Name it whatever you want, but
-		it will contain XML-data so a XML-file would be just fine. I.e. "substitute_web.config.xml"
-	b	Format the XML-file as the "example.xml" in this project. (or see XML-Format section below)
+2.		a	Create a file with your substitutions. Name it whatever you want, but
+			it will contain XML-data so a XML-file would be just fine. I.e. "substitute_web.config.xml"
+		b	Format the XML-file as the "example.xml" in this project. (or see XML-Format section below)
 
 3.		Add the "SubstituteApp.exe" to you project. The "Libraries"-folder could be a suitable place.
 
