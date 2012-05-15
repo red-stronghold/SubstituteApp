@@ -5,7 +5,7 @@
     <title>SubstituteApp</title>
     <version>2.1.2</version>
     <authors>Johan Redborg</authors>
-    <projectUrl>https://github.com/red-stronghold/SubstituteApp</projectUrl>
+    <projectUrl>http://red-stronghold.github.com/SubstituteApp/</projectUrl>
     <description>Sets up SubstituteApp with template file and substitution file for substitution in web.config</description>
   </metadata>
   <files>
