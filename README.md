@@ -7,7 +7,6 @@ Support of different substitutions based on build flavor (i.e. Debug, Release et
 Perfect for generation of complete sites including all neccesary files.
 Enables you to put environment specific values under source control.
 
-------------------------------------------------------------
 Usage
 ------------------------------------------------------------
 1.  		Create a file with the same name as the file you want to make substitutions in.
@@ -32,7 +31,6 @@ Usage
 								          - NOTE: Your can't exclude a file from source control if it has a dependency to a not excluded file.
 								            Remove dependency (edit .csproj file) or exclude the parent file too.
 
-------------------------------------------------------------
 Parameters
 ------------------------------------------------------------
 1.		Build flavor name (use "$(ConfigurationName)")
@@ -41,14 +39,12 @@ Parameters
 (4-).	If path (3.) contains whitespaces the app will believe additional parameters are sent in. 
       These will be concaternated in the app with a whitespace between.
 
-------------------------------------------------------------
 What happens
 ------------------------------------------------------------
 The app search the template file for keys and substitutes them with the value defined 
 in the substitution-xml-file.
 The app also remove the readonly attribute of the target file. In order to be able to write to it.
 
-------------------------------------------------------------
 XML-Format - Config
 ------------------------------------------------------------
 - Root node: 'substitutes'
@@ -59,7 +55,6 @@ XML-Format - Config
 	- 'resultfile'
 	each containing the relative path (from projectroot) to given file.
 
-------------------------------------------------------------
 XML-Format - Substitution
 ------------------------------------------------------------
 - Root node: 'substitution'
@@ -84,7 +79,6 @@ XML-Format - Substitution
   </configuration>
 </substitution>
 
-------------------------------------------------------------
 Errors
 ------------------------------------------------------------
 The app will fail if...
