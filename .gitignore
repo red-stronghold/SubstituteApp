@@ -6,5 +6,5 @@ _ReSharper*
 *.csproj.user
 *.resharper.user
 *.cache
-build
+/build
 /nuget
