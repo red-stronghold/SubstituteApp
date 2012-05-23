@@ -1,4 +1,4 @@
-*.suo
+﻿*.suo
 *.user
 bin
 obj
@@ -7,5 +7,4 @@ _ReSharper*
 *.resharper.user
 *.cache
 build
-nuget
-ProjectWeb
+/nuget
