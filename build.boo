@@ -26,7 +26,7 @@ target nuget_pack:
     exec("Libraries/Phantom/lib/nuget/NuGet.exe", "pack substituteapp.nuspec /o ${nuget_folder}")
 
 target nuget_push, (nuget_pack):
-    exec("Libraries/Phantom/lib/nuget/NuGet.exe", "push ${nuget_folder}SubstituteApp.2.1.2.nupkg")
+    exec("Libraries/Phantom/lib/nuget/NuGet.exe", "push ${nuget_folder}SubstituteApp.2.1.3.nupkg")
 
 
 target prepare_folders:
